@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import math
 import time
 import os
@@ -130,7 +130,7 @@ def trian_model(sentence_pairs,Train_Model,optimizer,loss_function,
 	all_num = 0
 	q_t = []
 	ex_t = []
-	plt.ion()
+	# plt.ion()
 	for k in range(epoches):
 		start = time.clock()
 		Length = len(sentence_pairs)
@@ -150,6 +150,7 @@ def trian_model(sentence_pairs,Train_Model,optimizer,loss_function,
 			num += 1
 			all_num += 1
 			sum_temp += loss.data[0]
+			"""
 			if num % 100 == 0:
 				q_t.append(sum_temp/num)
 				x = np.linspace(0,len(q_t),len(q_t))
@@ -162,13 +163,14 @@ def trian_model(sentence_pairs,Train_Model,optimizer,loss_function,
 				plt.pause(0.1)
 				sum_temp = 0
 				num = 0
+		"""
 		q_t = []
 		end = time.clock()
 		seconds,minutes,hours = time_diff(start,end)
 		print("time differential:%d hours,%d mintues,%d seconds"%(hours,minutes,seconds))
 		if not os.path.exists("pictures"):
 			os.mkdir("pictures")
-		plt.savefig("pictures/" + str(k) + ".jpg")
+		# plt.savefig("pictures/" + str(k) + ".jpg")
 
 	fpW = open("pictures/"+"loss.txt","w",encoding = "utf-8")
 	for data in ex_t:
